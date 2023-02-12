@@ -15,5 +15,9 @@ const PORT = 8080;
 const cors = require("cors");
 app.use(cors({ origin: "*" }));
 
+//getting auth routes
+const authRoute = require("./routers/authRoute");
+app.use("/auth", authRoute);
+
 //listening on the following port
 app.listen(PORT, () => console.log("listening"));
