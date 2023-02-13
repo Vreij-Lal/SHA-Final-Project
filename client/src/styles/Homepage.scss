@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  outline: solid 1px green;
+  width: 100%;
+  .profile-navbar-container {
+    outline: solid 1px red;
+    width: 15%;
+    .user-profile-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      outline: solid 1px red;
+      .user-profile-picture {
+        vertical-align: middle;
+        width: 100%;
+        border-radius: 50%;
+      }
+    }
+  }
+  .main-section-container {
+    outline: solid 1px red;
+    width: 60%;
+  }
+  .side-bar-container {
+    outline: solid 1px red;
+    width: 25%;
+  }
+}
