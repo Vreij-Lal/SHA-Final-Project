@@ -16,7 +16,7 @@ const signup = async (req, res) => {
           password: hash,
         });
         await newUser.save();
-        res.status(200).json(newUser);
+        res.status(200).json("User Created");
       }
     });
   } catch (error) {
@@ -32,11 +32,9 @@ const login = async (req, res) => {
     const user = await User.findOne({ name: name });
     if (user) {
       const compare = await bcrypt.compare(password, user.password);
-      compare
-        ? res.status(200).json(user)
-        : res.status(400).json("Wrong Password");
+      compare ? res.send(true) : res.send("Wrong Password");
     } else {
-      res.status(404).json("user not found");
+      res.send("user not found");
     }
   } catch (error) {
     res.status(500).json({ message: error.message });

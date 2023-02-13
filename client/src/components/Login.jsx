@@ -1,14 +1,25 @@
 import { useState } from "react";
 import axios from "axios";
-function Login() {
+import { Link, useNavigate } from "react-router-dom";
+
+function Login({ setToggle }) {
   let [name, setName] = useState("");
   let [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
   function login() {
-    axios.post("http://localhost:8080/auth/login", {
-      name: name,
-      password: password,
-    });
+    axios
+      .post("http://localhost:8080/auth/login", {
+        name: name,
+        password: password,
+      })
+      .then((data) => {
+        if (data.data === true) {
+          localStorage.setItem("user", name);
+          navigate("/homepage");
+        } else {
+          alert(data.data);
+        }
+      });
   }
 
   return (
@@ -44,6 +55,16 @@ function Login() {
         >
           Login
         </button>
+        <p>
+          Don't Have An Account ?{" "}
+          <Link
+            onClick={() => {
+              setToggle(false);
+            }}
+          >
+            Signup
+          </Link>
+        </p>
       </div>
     </div>
   );

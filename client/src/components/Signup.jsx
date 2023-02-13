@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
-function Signup() {
+import { Link } from "react-router-dom";
+function Signup({ setToggle }) {
   let [name, setName] = useState("");
   let [password, setPassword] = useState("");
   let [email, setEmail] = useState("");
@@ -54,6 +55,16 @@ function Signup() {
         >
           Signup
         </button>
+        <p>
+          Already Have An Account ?{" "}
+          <Link
+            onClick={() => {
+              setToggle(true);
+            }}
+          >
+            Login
+          </Link>
+        </p>
       </div>
     </div>
   );
