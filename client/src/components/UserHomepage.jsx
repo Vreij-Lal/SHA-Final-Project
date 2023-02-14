@@ -1,6 +1,5 @@
 import "../styles/UserHomepage.scss";
 function UserHomepage() {
-  const username = localStorage.getItem("user") || "no user";
   return (
     <div className="container">
       <div className="profile-navbar-container">
@@ -10,7 +9,7 @@ function UserHomepage() {
             alt=""
             className="user-profile-picture"
           />
-          <h1>{username}</h1>
+          <h1></h1>
         </div>
         <nav>
           <ul>

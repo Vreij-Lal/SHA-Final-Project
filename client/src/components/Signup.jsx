@@ -1,17 +1,26 @@
 import { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 function Signup({ setToggle }) {
   let [name, setName] = useState("");
   let [password, setPassword] = useState("");
   let [email, setEmail] = useState("");
-
+  const navigate = useNavigate();
   function signup() {
-    axios.post("http://localhost:8080/auth/signup", {
-      name: name,
-      email: email,
-      password: password,
-    });
+    axios
+      .post("http://localhost:8080/auth/signup", {
+        name: name,
+        email: email,
+        password: password,
+      })
+      .then(({ data }) => {
+        console.log(data);
+        if (data.token) {
+          navigate("/homepage");
+        } else {
+          alert(data.message);
+        }
+      });
   }
 
   return (

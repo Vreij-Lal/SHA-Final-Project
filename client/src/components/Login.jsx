@@ -12,12 +12,12 @@ function Login({ setToggle }) {
         name: name,
         password: password,
       })
-      .then((data) => {
-        if (data.data === true) {
-          localStorage.setItem("user", name);
+      .then(({ data }) => {
+        console.log(data);
+        if (data.token) {
           navigate("/homepage");
         } else {
-          alert(data.data);
+          alert(data.message);
         }
       });
   }

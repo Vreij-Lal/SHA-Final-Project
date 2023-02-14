@@ -19,7 +19,7 @@ const signup = async (req, res) => {
           password: hash,
         });
         await newUser.save();
-        res.status(200).json("User Created");
+        res.send({ message: "user saved !" });
       }
     });
   } catch (error) {
@@ -37,15 +37,15 @@ const login = async (req, res) => {
       bcrypt.compare(password, user.password, (err, result) => {
         if (result) {
           let token = jwt.sign({ id: user._id }, "testing", {
-            expiresIn: "30s",
+            expiresIn: "1h",
           });
           res.send({ token });
         } else {
-          res.send({ message: false });
+          res.send({ message: "wrong Password" });
         }
       });
     } else {
-      res.send("wrong password");
+      res.send({ message: "user does not exist" });
     }
   } catch (error) {
     res.send({ message: error.message });
@@ -58,7 +58,7 @@ const verify = async (req, res) => {
     } else {
       let userID = decoded.id;
       let user = await User.findOne({ _id: userID });
-      let token = jwt.sign({ id: user._id }, "testing", { expiresIn: "30s" });
+      let token = jwt.sign({ id: user._id }, "testing", { expiresIn: "1h" });
       let data = {
         name: user.name,
         _id: user.id,
