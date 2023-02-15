@@ -1,4 +1,6 @@
 import "../styles/UserHomepage.scss";
+import PostCreator from "./postCreator";
+import Posts from "./Posts";
 function UserHomepage() {
   return (
     <div className="container">
@@ -23,7 +25,10 @@ function UserHomepage() {
         <div>
           <h1>home</h1>
         </div>
-        <div></div>
+        <div>
+          <PostCreator />
+          <Posts />
+        </div>
       </div>
       <div className="side-bar-container">
         <div>

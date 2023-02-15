@@ -12,5 +12,14 @@ const createPost = async (req, res) => {
   }
 };
 
+const getPosts = async (req, res) => {
+  const allPosts = await Posts.find({});
+  try {
+    res.send(allPosts);
+  } catch (error) {
+    res.send(error);
+  }
+};
+
 //exporting the following functions
-module.exports = { createPost };
+module.exports = { createPost, getPosts };

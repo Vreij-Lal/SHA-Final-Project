@@ -9,6 +9,7 @@ const router = express.Router();
 
 //defining routes
 router.post("/", postsController.createPost);
+router.get("/getposts", postsController.getPosts);
 
 //exporting routes
 module.exports = router;
