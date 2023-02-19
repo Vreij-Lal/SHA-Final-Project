@@ -1,6 +1,7 @@
 import "../styles/UserHomepage.scss";
 import PostCreator from "./postCreator";
 import Posts from "./Posts";
+import { NavLink } from "react-router-dom";
 function UserHomepage() {
   return (
     <div className="container">
@@ -11,12 +12,27 @@ function UserHomepage() {
             alt=""
             className="user-profile-picture"
           />
-          <h1></h1>
+          <div className="username-header">
+            <h1>username</h1>
+          </div>
         </div>
-        <nav>
+        <nav className="navbar-container">
           <ul>
-            <li>Home</li>
-            <li>Explore</li> <li>Messages</li> <li>Profile</li> <li>More</li>
+            <NavLink className="navbar-link" to="/homepage">
+              Home
+            </NavLink>
+            <NavLink className="navbar-link" to="/explore">
+              Explore
+            </NavLink>
+            <NavLink className="navbar-link" to="/messages">
+              Messages
+            </NavLink>
+            <NavLink className="navbar-link" to="/profile">
+              Profile
+            </NavLink>
+            <NavLink className="navbar-link" to="/more">
+              More
+            </NavLink>
           </ul>
         </nav>
       </div>

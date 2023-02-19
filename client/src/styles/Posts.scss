@@ -1,0 +1,32 @@
+.post-container {
+  outline: 1px solid skyblue;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .poster-info {
+    display: flex;
+    align-self: flex-start;
+    outline: 1px solid greenyellow;
+    width: 15%;
+
+    img {
+      width: 75%;
+      border-radius: 50%;
+    }
+  }
+
+  .post-img {
+    outline: 1px solid #ff0000;
+    width: 100%;
+    img {
+      width: 100%;
+      border-radius: 5%;
+    }
+  }
+  .post-desc {
+    width: 100%;
+    p {
+    }
+  }
+}
