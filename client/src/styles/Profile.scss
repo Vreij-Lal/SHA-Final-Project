@@ -1,0 +1,50 @@
+.profile-section-container {
+  outline: solid 1px red;
+  width: 60%;
+  .profile-section-username-header {
+    h1 {
+    }
+  }
+  .profile-section-timeline {
+    width: 100%;
+    img {
+      width: 100%;
+    }
+    .timeline-container {
+      height: 5rem;
+
+      width: 100%;
+      .timeline {
+        position: relative;
+        bottom: 5rem;
+        width: 20%;
+        img {
+          width: 100%;
+          border-radius: 50%;
+        }
+      }
+    }
+    .profile-info {
+      display: flex;
+      flex-direction: column;
+      .profile-info-section {
+        display: flex;
+        justify-content: space-around;
+      }
+    }
+  }
+}
+.profile-navbar {
+  ul {
+    display: flex;
+    justify-content: space-around;
+    .profile-navlinks {
+      list-style-type: none;
+      text-decoration: none;
+      color: black;
+    }
+    .active {
+      text-decoration: underline;
+    }
+  }
+}

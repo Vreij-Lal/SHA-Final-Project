@@ -1,4 +1,5 @@
 import "../styles/UserHomepage.scss";
+import "../styles/Main.scss";
 import PostCreator from "./postCreator";
 import Posts from "./Posts";
 import { NavLink } from "react-router-dom";
@@ -37,7 +38,7 @@ function UserHomepage() {
         </nav>
       </div>
 
-      <div className="main-section-container">
+      <div className="home-section-container">
         <div>
           <h1>home</h1>
         </div>
@@ -46,6 +47,7 @@ function UserHomepage() {
           <Posts />
         </div>
       </div>
+
       <div className="side-bar-container">
         <div>
           <input type="text" placeholder="Search.." name="search" />
