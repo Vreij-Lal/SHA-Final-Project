@@ -4,7 +4,7 @@ const mongoose = require("./connection.js");
 //defining posts schema
 const postSchema = mongoose.Schema(
   {
-    //userId: { type: String, required: true },
+    user: { type: String, required: true },
     desc: { type: String, required: true },
     image: String,
     likes: [],

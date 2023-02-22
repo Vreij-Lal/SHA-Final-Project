@@ -7,11 +7,18 @@ function PostCreator() {
 
   const createPost = () => {
     axios
-      .post("http://localhost:8080/posts", {
-        desc: description,
-        image: img,
+      .post("http://localhost:8080/auth/verify", {
+        token: localStorage.getItem("token"),
       })
-      .then(alert("post created!"));
+      .then((data) => {
+        axios
+          .post("http://localhost:8080/posts", {
+            user: data.data.name,
+            desc: description,
+            image: img,
+          })
+          .then(alert("post created!"));
+      });
   };
 
   return (

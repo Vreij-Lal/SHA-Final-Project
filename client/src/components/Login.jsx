@@ -15,6 +15,7 @@ function Login({ setToggle }) {
       .then(({ data }) => {
         console.log(data);
         if (data.token) {
+          localStorage.setItem("token", data.token);
           navigate("/homepage");
         } else {
           alert(data.message);

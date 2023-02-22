@@ -1,7 +1,17 @@
 import "../styles/Main.scss";
 import "../styles/Profile.scss";
 import { NavLink } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
 function Profile() {
+  let [username, setUsername] = useState("");
+  useEffect(() => {
+    axios
+      .post("http://localhost:8080/auth/verify", {
+        token: localStorage.getItem("token"),
+      })
+      .then((data) => setUsername(data.data.name));
+  }, [username]);
   return (
     <div className="container">
       <div className="profile-navbar-container">
@@ -12,7 +22,7 @@ function Profile() {
             className="user-profile-picture"
           />
           <div className="username-header">
-            <h1>username</h1>
+            <h1>{username}</h1>
           </div>
         </div>
         <nav className="navbar-container">
@@ -38,7 +48,7 @@ function Profile() {
 
       <div className="profile-section-container">
         <div className="profile-section-username-header">
-          <h1>Username</h1>
+          <h1>{username}</h1>
         </div>
         <div className="profile-section-timeline">
           <img
@@ -55,7 +65,7 @@ function Profile() {
             </div>
           </div>
           <div className="profile-info">
-            <h3>Username</h3>
+            <h3>{username}</h3>
             <h4>Web Developer</h4>
             <div className="profile-info-section">
               <p>Beirut, Lebanon</p>

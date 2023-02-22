@@ -3,7 +3,18 @@ import "../styles/Main.scss";
 import PostCreator from "./postCreator";
 import Posts from "./Posts";
 import { NavLink } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
 function UserHomepage() {
+  let [username, setUsername] = useState("");
+  useEffect(() => {
+    axios
+      .post("http://localhost:8080/auth/verify", {
+        token: localStorage.getItem("token"),
+      })
+      .then((data) => setUsername(data.data.name));
+  }, [username]);
+
   return (
     <div className="container">
       <div className="profile-navbar-container">
@@ -14,7 +25,7 @@ function UserHomepage() {
             className="user-profile-picture"
           />
           <div className="username-header">
-            <h1>username</h1>
+            <h1>{username}</h1>
           </div>
         </div>
         <nav className="navbar-container">
