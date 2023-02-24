@@ -1,5 +1,23 @@
 import { NavLink } from "react-router-dom";
+import ExploreUser from "./ExploreUser";
+import { useState, useEffect } from "react";
+import axios from "axios";
+
 function Explore() {
+  let [user, setUser] = useState([]);
+
+  useEffect(() => {
+    axios
+      .post("http://localhost:8080/auth/verify", {
+        token: localStorage.getItem("token"),
+      })
+      .then((data) => {
+        axios
+          .get(`http://localhost:8080/user/${data.data._id}`)
+          .then((data) => setUser([...data.data]));
+      });
+  }, []);
+
   return (
     <div className="container">
       <div className="profile-navbar-container">
@@ -34,10 +52,13 @@ function Explore() {
         </nav>
       </div>
 
-      <div className="main-section-container">
+      <div className="explore-section-container">
         <div>
           <h1>Explore</h1>
         </div>
+        {user.map((element) => {
+          return <ExploreUser user={element} />;
+        })}
       </div>
       <div className="side-bar-container">
         <div>

@@ -2,20 +2,15 @@
 const User = require("../models/userModel");
 
 //function to get user
-//some bugs to fix
-const getUser = async (req, res) => {
-  const id = req.params.id;
+const getAllUsers = async (req, res) => {
   try {
-    const user = await User.findById(id);
-
-    if (user) {
-      const { password, ...otherDetails } = user._doc;
-      res.status(200).json(otherDetails);
-    } else {
-      res.status(404).json("user does not exist");
-    }
-  } catch (error) {
-    res.status(500).json(error);
+    const users = await User.find({ _id: { $ne: req.params.id } });
+    res.json(users);
+  } catch (err) {
+    res.status(500).json({
+      status: "Failed",
+      message: err,
+    });
   }
 };
 
@@ -56,4 +51,4 @@ const deleteUser = async (req, res) => {
   }
 };
 //exporting the following functions
-module.exports = { getUser, updateUser, deleteUser };
+module.exports = { getAllUsers, updateUser, deleteUser };

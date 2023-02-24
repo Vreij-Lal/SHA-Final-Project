@@ -8,7 +8,7 @@ const express = require("express");
 const router = express.Router();
 
 //defining routes
-router.get("/:id", userController.getUser);
+router.get("/:id", userController.getAllUsers);
 router.put("/:id", userController.updateUser);
 router.delete("/:id", userController.deleteUser);
 
