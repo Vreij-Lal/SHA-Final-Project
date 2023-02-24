@@ -1,0 +1,10 @@
+.login-container {
+  outline: 1px solid red;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .login-section {
+    outline: 1px solid green;
+  }
+}

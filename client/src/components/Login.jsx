@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-
+import "../styles/Login.scss";
 function Login({ setToggle }) {
   let [name, setName] = useState("");
   let [password, setPassword] = useState("");
@@ -24,9 +24,11 @@ function Login({ setToggle }) {
   }
 
   return (
-    <div>
-      <h1>Login</h1>
-      <div>
+    <div className="login-container">
+      <div className="login-section">
+        <div>
+          <h1>Login</h1>
+        </div>
         <div>
           <input
             type="name"
@@ -46,26 +48,26 @@ function Login({ setToggle }) {
             }}
           />
         </div>
-      </div>
-      <div>
-        <button
-          id="login-button"
-          onClick={() => {
-            login();
-          }}
-        >
-          Login
-        </button>
-        <p>
-          Don't Have An Account ?{" "}
-          <Link
+        <div>
+          <button
+            id="login-button"
             onClick={() => {
-              setToggle(false);
+              login();
             }}
           >
-            Signup
-          </Link>
-        </p>
+            Login
+          </button>
+          <p>
+            Don't Have An Account ?{" "}
+            <Link
+              onClick={() => {
+                setToggle(false);
+              }}
+            >
+              Signup
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );

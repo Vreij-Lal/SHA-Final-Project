@@ -1,0 +1,10 @@
+.signup-container {
+  outline: 1px solid red;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .signup-section {
+    outline: 1px solid green;
+  }
+}
