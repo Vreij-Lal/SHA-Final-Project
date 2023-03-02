@@ -3,15 +3,18 @@ import { useState, useEffect } from "react";
 import "../styles/Posts.scss";
 function Posts() {
   let [posts, setPosts] = useState([]);
+
   useEffect(() => {
     getPosts();
   }, []);
+
   const getPosts = () => {
     axios.get("http://localhost:8080/posts/getposts").then((d) => {
       setPosts(d.data);
       console.log(posts);
     });
   };
+
   return (
     <div>
       {posts.map((e) => {

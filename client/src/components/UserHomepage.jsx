@@ -1,12 +1,16 @@
 import "../styles/UserHomepage.scss";
 import "../styles/Main.scss";
+import TrendingNews from "./TrendingNews";
 import PostCreator from "./postCreator";
 import Posts from "./Posts";
 import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+
 function UserHomepage() {
   let [username, setUsername] = useState("");
+  let [news, setNews] = useState([]);
+
   useEffect(() => {
     axios
       .post("http://localhost:8080/auth/verify", {
@@ -14,7 +18,14 @@ function UserHomepage() {
       })
       .then((data) => setUsername(data.data.name));
   }, [username]);
-
+  useEffect(() => {
+    axios
+      .get(
+        "https://newsdata.io/api/1/news?apikey=pub_177364906c8f6693d22ebc8f68445d85f0ef7&language=en"
+      )
+      .then((data) => setNews([...data.data.results]));
+  }, []);
+  console.log(news);
   return (
     <div className="container">
       <div className="profile-navbar-container">
@@ -61,8 +72,11 @@ function UserHomepage() {
 
       <div className="side-bar-container">
         <div>
-          <input type="text" placeholder="Search.." name="search" />
+          <h1>Tranding News</h1>
         </div>
+        {news.map((element) => {
+          return <TrendingNews news={element} />;
+        })}
       </div>
     </div>
   );
