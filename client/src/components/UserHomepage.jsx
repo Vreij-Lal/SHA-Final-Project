@@ -25,7 +25,7 @@ function UserHomepage() {
       )
       .then((data) => setNews([...data.data.results]));
   }, []);
-  console.log(news);
+
   return (
     <div className="container">
       <div className="profile-navbar-container">
@@ -54,7 +54,7 @@ function UserHomepage() {
               Profile
             </NavLink>
             <NavLink className="navbar-link" to="/more">
-              More
+              Notifications
             </NavLink>
           </ul>
         </nav>

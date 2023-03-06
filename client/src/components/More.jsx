@@ -29,7 +29,7 @@ function More() {
               Profile
             </NavLink>
             <NavLink className="navbar-link" to="/more">
-              More
+              Notifications
             </NavLink>
           </ul>
         </nav>

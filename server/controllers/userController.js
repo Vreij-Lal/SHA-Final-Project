@@ -1,7 +1,7 @@
 //getting user schema
 const User = require("../models/userModel");
 
-//function to get user
+//function to get all users
 const getAllUsers = async (req, res) => {
   try {
     const users = await User.find({ _id: { $ne: req.params.id } });
@@ -14,41 +14,45 @@ const getAllUsers = async (req, res) => {
   }
 };
 
-//function to update user
-const updateUser = async (req, res) => {
-  const id = req.params.id;
-  const { currentUserId } = req.body;
-
-  if (id === currentUserId) {
-    try {
-      const user = await User.findByIdAndUpdate(id, req.body, {
-        new: true,
-      });
-      res.status(200).json(user);
-    } catch (error) {
-      res.status(500).json(error);
-    }
-  } else {
-    res.status(403).json("cannot update other profiles");
+//function to send friend request
+const sendFriendRequest = async (req, res) => {
+  try {
+    const sender = req.body.sender;
+    const friendName = req.body.friendName;
+    const user = await User.findOne({ name: friendName });
+    user.friendRequests.push(sender);
+    user.save();
+    res.send({ message: "Request sent" });
+  } catch (err) {
+    res.status(500).json({
+      status: "Failed",
+      message: err,
+    });
   }
 };
 
-//function to delete user
-const deleteUser = async (req, res) => {
-  const id = req.params.id;
-
-  const { currentUserId } = req.body;
-
-  if (currentUserId === id) {
-    try {
-      await User.findByIdAndDelete(id);
-      res.status(200).json("User deleted");
-    } catch (error) {
-      res.status(500).json(error);
+//function to cancel friend request
+const cancelFriendRequest = async (req, res) => {
+  try {
+    const sender = req.body.sender;
+    const friendName = req.body.friendName;
+    const user = await User.findOne({ name: friendName });
+    if (user) {
+      for (var i = 0; i < user.friendRequests.length; i++) {
+        if (user.friendRequests[i] == sender) {
+          user.friendRequests.splice(i, 1);
+        }
+      }
     }
-  } else {
-    res.status(403).json("cannot delete other profiles");
+    user.save();
+    res.send({ message: "Request sent" });
+  } catch (err) {
+    res.status(500).json({
+      status: "Failed",
+      message: err,
+    });
   }
 };
+
 //exporting the following functions
-module.exports = { getAllUsers, updateUser, deleteUser };
+module.exports = { getAllUsers, sendFriendRequest, cancelFriendRequest };

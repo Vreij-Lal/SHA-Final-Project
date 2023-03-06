@@ -9,8 +9,8 @@ const router = express.Router();
 
 //defining routes
 router.get("/:id", userController.getAllUsers);
-router.put("/:id", userController.updateUser);
-router.delete("/:id", userController.deleteUser);
+router.post("/sendFriendRequest", userController.sendFriendRequest);
+router.post("/cancelFriendRequest", userController.cancelFriendRequest);
 
 //exporting routes
 module.exports = router;

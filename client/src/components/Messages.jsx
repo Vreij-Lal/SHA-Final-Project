@@ -28,7 +28,7 @@ function Messages() {
               Profile
             </NavLink>
             <NavLink className="navbar-link" to="/more">
-              More
+              Notifications
             </NavLink>
           </ul>
         </nav>
