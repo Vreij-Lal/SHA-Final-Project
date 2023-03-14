@@ -1,5 +1,22 @@
 import { NavLink } from "react-router-dom";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import FriendRequests from "./FriendRequests";
 function More() {
+  let [username, setUsername] = useState("");
+  let [userFriendRequests, setUserFriendRequests] = useState([]);
+
+  useEffect(() => {
+    axios
+      .post("http://localhost:8080/auth/verify", {
+        token: localStorage.getItem("token"),
+      })
+      .then((data) => {
+        setUsername(data.data.name);
+        setUserFriendRequests([...data.data.friendRequests]);
+        console.log(userFriendRequests);
+      });
+  }, [username]);
   return (
     <div className="container">
       <div className="profile-navbar-container">
@@ -10,7 +27,7 @@ function More() {
             className="user-profile-picture"
           />
           <div className="username-header">
-            <h1>username</h1>
+            <h1>{username}</h1>
           </div>
         </div>
 
@@ -37,8 +54,11 @@ function More() {
 
       <div className="main-section-container">
         <div>
-          <h1>More</h1>
+          <h1>Notifications</h1>
         </div>
+        {userFriendRequests.map((Element) => {
+          return <FriendRequests username={Element} />;
+        })}
       </div>
       <div className="side-bar-container">
         <div>

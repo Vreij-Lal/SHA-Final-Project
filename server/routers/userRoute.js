@@ -11,6 +11,6 @@ const router = express.Router();
 router.get("/:id", userController.getAllUsers);
 router.post("/sendFriendRequest", userController.sendFriendRequest);
 router.post("/cancelFriendRequest", userController.cancelFriendRequest);
-
+router.post("/acceptFriendRequest", userController.acceptFriendRequest);
 //exporting routes
 module.exports = router;

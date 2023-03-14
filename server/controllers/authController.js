@@ -63,6 +63,7 @@ const verify = async (req, res) => {
         name: user.name,
         _id: user.id,
         token: token,
+        friendRequests: user.friendRequests,
       };
       res.send(data);
     }
