@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/Signup.scss";
+import logo from "../Logo.png";
 function Signup({ setToggle }) {
   let [name, setName] = useState("");
   let [password, setPassword] = useState("");
@@ -27,9 +28,9 @@ function Signup({ setToggle }) {
   return (
     <div className="signup-container">
       <div className="signup-section">
-        <div>
-          <h1>Signup</h1>
-        </div>
+        <img src={logo} alt="" />
+        <h1>Signup</h1>
+
         <div>
           <input
             type="text"
@@ -58,25 +59,23 @@ function Signup({ setToggle }) {
             }}
           />
         </div>
-        <div>
-          <button
+        <button
+          onClick={() => {
+            signup();
+          }}
+        >
+          Signup
+        </button>
+        <p>
+          Already Have An Account ?{" "}
+          <Link
             onClick={() => {
-              signup();
+              setToggle(true);
             }}
           >
-            Signup
-          </button>
-          <p>
-            Already Have An Account ?{" "}
-            <Link
-              onClick={() => {
-                setToggle(true);
-              }}
-            >
-              Login
-            </Link>
-          </p>
-        </div>
+            Login
+          </Link>
+        </p>
       </div>
     </div>
   );

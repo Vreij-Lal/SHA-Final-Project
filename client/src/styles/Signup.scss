@@ -1,10 +1,23 @@
 .signup-container {
-  outline: 1px solid red;
-  height: 100vh;
+  height: 96vh;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   .signup-section {
-    outline: 1px solid green;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      width: 50%;
+    }
+    h1 {
+    }
+    input {
+    }
+    button {
+    }
   }
 }
