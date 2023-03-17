@@ -1,6 +1,7 @@
 import React from "react";
 import PostCreator from "./postCreator";
 import Posts from "./Posts";
+import "../styles/Home.scss";
 function Home() {
   return (
     <div className="home-section-container">
