@@ -1,47 +1,5 @@
 .container {
   display: flex;
-  justify-content: space-between;
   outline: solid 1px green;
   width: 100%;
-  .profile-navbar-container {
-    outline: solid 1px red;
-    width: 15%;
-    .user-profile-container {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      outline: solid 1px red;
-
-      .user-profile-picture {
-        vertical-align: middle;
-        width: 100%;
-        border-radius: 50%;
-      }
-      .username-header {
-        width: 100%;
-        h1 {
-        }
-      }
-    }
-    .navbar-container {
-      ul {
-        display: flex;
-        flex-direction: column;
-
-        .navbar-link {
-          text-decoration: none;
-          list-style-type: none;
-          color: black;
-        }
-        .active {
-          color: red;
-        }
-      }
-    }
-  }
-  .side-bar-container {
-    outline: solid 1px red;
-    width: 25%;
-  }
 }

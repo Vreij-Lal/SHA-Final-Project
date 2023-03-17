@@ -2,7 +2,7 @@ import { useState } from "react";
 import Login from "./Login";
 import Signup from "./Signup";
 
-function Homepage() {
+function SignupLogin() {
   let [toggle, setToggle] = useState(false);
 
   return toggle ? (
@@ -12,4 +12,4 @@ function Homepage() {
   );
 }
 
-export default Homepage;
+export default SignupLogin;

@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 
-import Homepage from "./components/Homepage";
+import SignupLogin from "./components/SignupLogin";
 import UserHomepage from "./components/UserHomepage";
 
 import Explore from "./components/Explore";
@@ -11,7 +11,7 @@ import More from "./components/More";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Homepage />}></Route>
+      <Route path="/" element={<SignupLogin />}></Route>
       <Route path="/homepage" element={<UserHomepage />}></Route>
       <Route path="/explore" element={<Explore />}></Route>
       <Route path="/messages" element={<Messages />}></Route>
