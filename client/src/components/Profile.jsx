@@ -2,6 +2,7 @@ import "../styles/Profile.scss";
 import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import logo from "../Logo.png";
 function Profile() {
   let [username, setUsername] = useState("");
   useEffect(() => {

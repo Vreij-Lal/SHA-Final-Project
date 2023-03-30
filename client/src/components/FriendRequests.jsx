@@ -25,7 +25,7 @@ function FriendRequests(props) {
 
   return (
     <div>
-      {props.username} sent you a friend userFriendRequests
+      {props.username} sent you a friend request
       <button onClick={handleAccept}>Accept</button>
     </div>
   );

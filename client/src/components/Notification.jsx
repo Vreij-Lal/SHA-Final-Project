@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import FriendRequests from "./FriendRequests";
+import "../styles/Notifications.scss";
 function Notification() {
   let [username, setUsername] = useState("");
   let [userFriendRequests, setUserFriendRequests] = useState([]);

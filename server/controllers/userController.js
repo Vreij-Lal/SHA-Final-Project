@@ -1,6 +1,19 @@
 //getting user schema
 const User = require("../models/userModel");
 
+//creating file system
+const fs = require("fs");
+
+// Define the file path and name
+const filePath = "./Rooms.txt";
+let roomValue = null;
+fs.readFile(filePath, "utf8", (err, data) => {
+  if (err) throw err;
+  const value = data.trim();
+  roomValue = value;
+  console.log("room: " + roomValue);
+});
+
 //function to get all users
 const getAllUsers = async (req, res) => {
   try {
@@ -35,18 +48,28 @@ const acceptFriendRequest = async (req, res) => {
   const friendName = req.body.friendName;
   const username = req.body.username;
   const user = await User.findOne({ name: username });
-  console.log("old user:", user);
+  const friend = await User.findOne({ name: friendName });
 
   if (user) {
     for (var i = 0; i < user.friendRequests.length; i++) {
       if (user.friendRequests[i] == friendName) {
         user.friends.push(user.friendRequests[i]);
         user.friendRequests.splice(i, 1);
+        user.rooms.push(roomValue);
+        friend.rooms.push(roomValue);
+        let newValue = parseInt(roomValue);
+        newValue += 1;
+        let convertedValue = newValue.toString();
+        console.log("CV: ", convertedValue);
+        fs.writeFile(filePath, convertedValue, { flag: "w" }, (err) => {
+          if (err) throw err;
+          console.log("File overwritten!");
+        });
       }
     }
     user.save();
+    friend.save();
   }
-  console.log("new user:", user);
 };
 
 //function to cancel friend request

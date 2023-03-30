@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import TrendingNews from "./TrendingNews";
+import "../styles/NewsBar.scss";
 function NewsBar() {
   let [username, setUsername] = useState("");
   let [news, setNews] = useState([]);
@@ -20,7 +21,7 @@ function NewsBar() {
       .then((data) => setNews([...data.data.results]));
   }, []);
   return (
-    <div className="side-bar-container">
+    <div className="newsbar-container">
       <div>
         <h1>Trending News</h1>
       </div>

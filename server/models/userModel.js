@@ -18,6 +18,7 @@ const UserSchema = new mongoose.Schema(
     },
     friendRequests: [String],
     friends: [String],
+    rooms: [String],
   },
   { timestamps: true }
 );
