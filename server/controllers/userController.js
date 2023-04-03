@@ -101,6 +101,24 @@ const cancelFriendRequest = async (req, res) => {
   }
 };
 
+//function to get specific user
+const getUserRoom = async (req, res) => {
+  try {
+    const request = req.body.username;
+    const user = await User.findOne({ name: request });
+    if(user){
+      res.send({
+        rooms:user.rooms,
+      })
+    }
+  } catch (err) {
+    res.status(500).json({
+      status: "Failed",
+      message: err,
+    });
+  }
+};
+
 
 //exporting the following functions
 module.exports = {
@@ -108,4 +126,5 @@ module.exports = {
   sendFriendRequest,
   cancelFriendRequest,
   acceptFriendRequest,
+  getUserRoom,
 };

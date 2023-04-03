@@ -36,7 +36,7 @@ function Messages() {
   let [userFriends, setUserFriends] = useState([]);
   useEffect(() => {
     axios
-      .post("http://localhost:8080/auth/verify", {
+      .post("http://localhost:8080/user/verify", {
         token: localStorage.getItem("token"),
       })
       .then((data) => setUserFriends(data.data.friends));
@@ -53,8 +53,14 @@ function Messages() {
       .then((data) => setUserRooms(data.data.rooms));
   }, [userRooms]);
 
-  
-  //getting and setting friend's room number
+
+  //getting friend room array
+  const [data, setData] = useState('');
+
+  const handleData = (childData) => {
+    setData(childData);
+    console.log(data);
+  }
 
 
 
@@ -79,9 +85,9 @@ function Messages() {
       <button onClick={sendMessage}>send msg</button>
       <h1>{messageReceived}</h1>
       <div>
-        {userFriends.map((e) => {
+        {userFriends.map((element,index) => {
 
-          return <UserFriends username={e}/>
+          return <UserFriends username={element} onData={handleData}/>
         })}
       </div>
     </div>
