@@ -44,6 +44,7 @@ const sendFriendRequest = async (req, res) => {
   }
 };
 
+//function to accept friend request
 const acceptFriendRequest = async (req, res) => {
   const friendName = req.body.friendName;
   const username = req.body.username;
@@ -51,19 +52,24 @@ const acceptFriendRequest = async (req, res) => {
   const friend = await User.findOne({ name: friendName });
 
   if (user) {
+
     for (var i = 0; i < user.friendRequests.length; i++) {
       if (user.friendRequests[i] == friendName) {
-        user.friends.push(user.friendRequests[i]);
+        
+
+        user.friends.push(user.friendRequests[i] );
         user.friendRequests.splice(i, 1);
+
+
         user.rooms.push(roomValue);
         friend.rooms.push(roomValue);
-        let newValue = parseInt(roomValue);
+        
+        let newValue = parseInt(roomValue);                   
         newValue += 1;
         let convertedValue = newValue.toString();
-        console.log("CV: ", convertedValue);
+
         fs.writeFile(filePath, convertedValue, { flag: "w" }, (err) => {
           if (err) throw err;
-          console.log("File overwritten!");
         });
       }
     }
@@ -94,6 +100,7 @@ const cancelFriendRequest = async (req, res) => {
     });
   }
 };
+
 
 //exporting the following functions
 module.exports = {

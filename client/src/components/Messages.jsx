@@ -1,10 +1,13 @@
 import "../styles/Messages.scss";
 import { useEffect, useState } from "react";
 import io from "socket.io-client";
+import UserFriends from "./UserFriends";
+import axios from "axios";
 
 const socket = io.connect("http://localhost:8080");
 
 function Messages() {
+
   //room states
   const [room, setRoom] = useState("");
 
@@ -13,6 +16,7 @@ function Messages() {
   const [messageReceived, setMessageReceived] = useState("");
 
   const sendMessage = () => {
+    alert(message);
     socket.emit("send_message", { message, room });
   };
 
@@ -27,8 +31,38 @@ function Messages() {
       setMessageReceived(data.message);
     });
   }, [socket]);
+
+  //setting the user friends array
+  let [userFriends, setUserFriends] = useState([]);
+  useEffect(() => {
+    axios
+      .post("http://localhost:8080/auth/verify", {
+        token: localStorage.getItem("token"),
+      })
+      .then((data) => setUserFriends(data.data.friends));
+  }, [userFriends]);
+
+
+  //setting the user room array
+  let [userRooms, setUserRooms] = useState([]);
+  useEffect(() => {
+    axios
+      .post("http://localhost:8080/auth/verify", {
+        token: localStorage.getItem("token"),
+      })
+      .then((data) => setUserRooms(data.data.rooms));
+  }, [userRooms]);
+
+  
+  //getting and setting friend's room number
+
+
+
   return (
-    <div>
+
+    <div className="messages-section-container">
+    <h1>Messages</h1>
+
       <input
         placeholder="room number..."
         onChange={(e) => {
@@ -44,7 +78,15 @@ function Messages() {
       />
       <button onClick={sendMessage}>send msg</button>
       <h1>{messageReceived}</h1>
+      <div>
+        {userFriends.map((e) => {
+
+          return <UserFriends username={e}/>
+        })}
+      </div>
     </div>
+
+    
   );
 }
 
