@@ -5,8 +5,8 @@ const mongoose = require("./connection.js");
 const postSchema = mongoose.Schema(
   {
     user: { type: String, required: true },
-    desc: { type: String, required: true },
-    image: String,
+    desc: { type: String },
+    image: { type: String },
     likes: [],
     createdAt: {
       type: Date,

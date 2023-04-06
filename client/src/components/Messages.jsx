@@ -16,7 +16,7 @@ function Messages() {
   const [messageReceived, setMessageReceived] = useState("");
 
   const sendMessage = () => {
-    alert(message);
+    
     socket.emit("send_message", { message, room });
   };
 
@@ -32,35 +32,55 @@ function Messages() {
     });
   }, [socket]);
 
+   //setting the user room array
+   let [userRooms, setUserRooms] = useState("");
+   useEffect(() => {
+     axios
+       .post("http://localhost:8080/auth/verify", {
+         token: localStorage.getItem("token"),
+       })
+       .then((data) => {setUserRooms(data.data.rooms)});
+   }, [userRooms]);
+   
+
   //setting the user friends array
   let [userFriends, setUserFriends] = useState([]);
-  useEffect(() => {
-    axios
-      .post("http://localhost:8080/user/verify", {
-        token: localStorage.getItem("token"),
-      })
-      .then((data) => setUserFriends(data.data.friends));
-  }, [userFriends]);
-
-
-  //setting the user room array
-  let [userRooms, setUserRooms] = useState([]);
   useEffect(() => {
     axios
       .post("http://localhost:8080/auth/verify", {
         token: localStorage.getItem("token"),
       })
-      .then((data) => setUserRooms(data.data.rooms));
-  }, [userRooms]);
+      .then((data) => {setUserFriends(data.data.friends)});
+  }, [userFriends]);
 
-
+  
   //getting friend room array
-  const [data, setData] = useState('');
-
-  const handleData = (childData) => {
-    setData(childData);
-    console.log(data);
+  const [friendRooms, setFriendRooms] = useState('');
+  const [friendName, setFriendName] = useState();
+  const  handleData  =   (friendRooms, friendName) => {
+      setFriendRooms(friendRooms);
+     setFriendName(friendName)
   }
+  
+
+    //for setting main socket room state to the common room number friends share
+    const handleFindFirstCommonValue = () => {
+      for (let i = 0; i < userRooms.length; i++) {
+        for (let j = 0; j < friendRooms.length; j++) {
+          if (userRooms[i] === friendRooms[j]) {
+            setRoom(userRooms[i]);
+            console.log("common room is:" + room);
+            return;
+          }
+        }
+      }
+    };
+
+
+  //for testing
+  useEffect(() => {
+    handleFindFirstCommonValue();
+  }, [friendRooms])
 
 
 
@@ -69,6 +89,16 @@ function Messages() {
     <div className="messages-section-container">
     <h1>Messages</h1>
 
+     
+      <div>
+        {userFriends.map((element) => {
+
+          return <UserFriends username={element} onData={handleData}/>
+        })}
+      </div>
+      <h1>chat with {friendName} !</h1>
+      <h1>{messageReceived}</h1>
+      
       <input
         placeholder="room number..."
         onChange={(e) => {
@@ -76,6 +106,7 @@ function Messages() {
         }}
       />
       <button onClick={joinRoom}>join room</button>
+
       <input
         placeholder="Message..."
         onChange={(e) => {
@@ -83,13 +114,7 @@ function Messages() {
         }}
       />
       <button onClick={sendMessage}>send msg</button>
-      <h1>{messageReceived}</h1>
-      <div>
-        {userFriends.map((element,index) => {
-
-          return <UserFriends username={element} onData={handleData}/>
-        })}
-      </div>
+     
     </div>
 
     

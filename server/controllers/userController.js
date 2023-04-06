@@ -58,6 +58,8 @@ const acceptFriendRequest = async (req, res) => {
         
 
         user.friends.push(user.friendRequests[i] );
+        friend.friends.push(user.name);
+
         user.friendRequests.splice(i, 1);
 
 

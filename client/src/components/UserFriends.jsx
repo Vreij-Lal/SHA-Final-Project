@@ -6,6 +6,7 @@ import axios from "axios";
 
 function UserFriends(props) {
 
+
   const [childData, setChildData] = useState('');
   const [isActive, setIsActive] = useState(false);
   const sendDataToParent = () => {
@@ -16,7 +17,7 @@ function UserFriends(props) {
       })
       .then((data) => {
         setChildData(data.data.rooms)
-        props.onData(childData);
+        props.onData(childData, props.username);
       });
   }
 
