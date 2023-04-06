@@ -15,16 +15,18 @@ function Messages() {
   const [message, setMessage] = useState("");
   const [messageReceived, setMessageReceived] = useState("");
 
-  const sendMessage = () => {
+  const sendMessage =  () => {
     
-    socket.emit("send_message", { message, room });
+     socket.emit("send_message", { message, room });
   };
 
-  const joinRoom = () => {
+  const joinRoom = async () => {
     if (room != "") {
-      socket.emit("join_room", room);
+      console.log("rooooom: ", room);
+       socket.emit("join_room", room);
+
     }
-  };
+  }
 
   useEffect(() => {
     socket.on("receive_message", (data) => {
@@ -56,20 +58,20 @@ function Messages() {
   
   //getting friend room array
   const [friendRooms, setFriendRooms] = useState('');
-  const [friendName, setFriendName] = useState();
-  const  handleData  =   (friendRooms, friendName) => {
-      setFriendRooms(friendRooms);
-     setFriendName(friendName)
+  const [friendName, setFriendName] = useState("");
+  const  handleData  = (x, y) => {
+      setFriendRooms((friendRooms) => friendRooms = x);
+     setFriendName(friendName => friendName = y)
   }
   
 
     //for setting main socket room state to the common room number friends share
-    const handleFindFirstCommonValue = () => {
+    const handleFindFirstCommonValue = async () => {
       for (let i = 0; i < userRooms.length; i++) {
         for (let j = 0; j < friendRooms.length; j++) {
           if (userRooms[i] === friendRooms[j]) {
-            setRoom(userRooms[i]);
-            console.log("common room is:" + room);
+            setRoom(userRooms[i])
+             joinRoom()
             return;
           }
         }
@@ -77,12 +79,10 @@ function Messages() {
     };
 
 
-  //for testing
-  useEffect(() => {
-    handleFindFirstCommonValue();
-  }, [friendRooms])
 
-
+useEffect(() => {
+  handleFindFirstCommonValue()
+}, [handleData]);
 
   return (
 
@@ -98,15 +98,6 @@ function Messages() {
       </div>
       <h1>chat with {friendName} !</h1>
       <h1>{messageReceived}</h1>
-      
-      <input
-        placeholder="room number..."
-        onChange={(e) => {
-          setRoom(e.target.value);
-        }}
-      />
-      <button onClick={joinRoom}>join room</button>
-
       <input
         placeholder="Message..."
         onChange={(e) => {
