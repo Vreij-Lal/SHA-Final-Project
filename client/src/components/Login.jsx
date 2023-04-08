@@ -27,40 +27,43 @@ function Login({ setToggle }) {
   }
 
   return (
-    <div className="login-container">
-      <div className="login-section">
-        <img src={logo} alt="" />
-        <h1>Login</h1>
+    <section className="login-container">
+      <section className="login-section">
+        <img src={logo} alt="" className="profile"/>
+        <h4 className="heading-4">Login</h4>
 
-        <div>
+        <section>
           <input
             type="name"
             placeholder="username"
+            className="input-field"
             onChange={(e) => {
               setName(e.target.value);
             }}
           />
-        </div>
+        </section>
 
-        <div>
+        <section>
           <input
             type="password"
             placeholder="Password"
+            className="input-field"
             onChange={(e) => {
               setPassword(e.target.value);
             }}
           />
-        </div>
+        </section>
 
         <button
           id="login-button"
+          className="button-1"
           onClick={() => {
             login();
           }}
         >
           Login
         </button>
-        <p>
+        <p className="p">
           Don't Have An Account ?{" "}
           <Link
             onClick={() => {
@@ -70,8 +73,8 @@ function Login({ setToggle }) {
             Signup
           </Link>
         </p>
-      </div>
-    </div>
+      </section>
+    </section>
   );
 }
 

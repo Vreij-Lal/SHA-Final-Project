@@ -26,47 +26,56 @@ function Signup({ setToggle }) {
   }
 
   return (
-    <div className="signup-container">
-      <div className="signup-section">
-        <img src={logo} alt="" />
-        <h1>Signup</h1>
+    <section className="signup-container">
 
-        <div>
+      <section className="signup-section">
+
+        <img src={logo} alt="" className="profile"/>
+
+        <h4 className="heading-4">Sign up</h4>
+
+        <section>
           <input
             type="text"
             placeholder="username"
+            className="input-field"
             onChange={(e) => {
               setName(e.target.value);
             }}
           />
-        </div>
-        <div>
+        </section>
+
+        <section>
           <input
             type="text"
             placeholder="email"
+            className="input-field"
             onChange={(e) => {
               setEmail(e.target.value);
             }}
           />
-        </div>
+        </section>
 
-        <div>
+        <section>
           <input
             type="password"
             placeholder="Password"
+            className="input-field"
             onChange={(e) => {
               setPassword(e.target.value);
             }}
           />
-        </div>
+        </section>
+
         <button
+        className="button-1"
           onClick={() => {
             signup();
           }}
         >
           Signup
         </button>
-        <p>
+        <p className="p">
           Already Have An Account ?{" "}
           <Link
             onClick={() => {
@@ -76,8 +85,8 @@ function Signup({ setToggle }) {
             Login
           </Link>
         </p>
-      </div>
-    </div>
+      </section>
+    </section>
   );
 }
 

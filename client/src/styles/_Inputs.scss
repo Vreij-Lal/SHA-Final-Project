@@ -1,0 +1,18 @@
+.input-field {
+    border-radius: 1rem;
+    border: none;
+    background-color: $light-blue;
+    color: $black;
+    font-size: 1rem;
+    padding: $input-padding;
+    //width: 100%;
+    max-width: 300px;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+    margin: $input-margin;
+  
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba($blue, 0.3);
+    }
+}

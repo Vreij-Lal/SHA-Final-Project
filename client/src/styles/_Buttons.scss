@@ -1,10 +1,12 @@
 .button-1 {
-    height: $button-size;
-    width: $button-size;
-    background-color: blue;
+
+    width: 30%;
+    background-color: $hover-blue;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 1rem;
+    padding: $button-padding ;
+    margin: $button-margin;
     cursor: pointer;
   
     &:hover, &:active {

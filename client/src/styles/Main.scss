@@ -1,10 +1,15 @@
-@import "Sizes";
 @import "Colors";
+@import "Paddings";
+@import "Margins";
+@import "Sizes";
 @import "Typography";
+@import "Paragraphs";
 @import "Headings";
 @import "NavBars";
 @import "Images";
 @import "Buttons";
+@import "Inputs";
+
 
 .container {
   display: flex;
@@ -12,3 +17,8 @@
   width: 100%;
 }
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
