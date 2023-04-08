@@ -23,8 +23,8 @@ function Posts() {
           <section className="post-container">
 
             <section className="poster-info">
-              <img src={logo} alt="" />
-              <h4>{e.user}</h4>
+              <img src={logo} alt="" className="logo" />
+              <h5 className="heading-5">{e.user}</h5>
             </section>
 
             <section className="post-img">
