@@ -21,14 +21,14 @@ function NewsBar() {
       .then((data) => setNews([...data.data.results]));
   }, []);
   return (
-    <div className="newsbar-container">
-      <div>
-        <h1>Trending News</h1>
-      </div>
+    <section className="newsbar-container">
+      <header>
+        <h1 className="heading-1">Trending News</h1>
+      </header>
       {news.map((element) => {
         return <TrendingNews news={element} />;
       })}
-    </div>
+    </section>
   );
 }
 

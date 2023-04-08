@@ -18,14 +18,14 @@ function Notification() {
       });
   }, [username]);
   return (
-    <div className="notification-section-container">
-      <div>
-        <h1>Notifications</h1>
-      </div>
+    <section className="notification-section-container">
+      <header>
+        <h1 className="heading-1">Notifications</h1>
+      </header>
       {userFriendRequests.map((Element) => {
         return <FriendRequests username={Element} />;
       })}
-    </div>
+    </section>
   );
 }
 

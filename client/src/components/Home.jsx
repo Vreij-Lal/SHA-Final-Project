@@ -4,15 +4,17 @@ import Posts from "./Posts";
 import "../styles/Home.scss";
 function Home() {
   return (
-    <div className="home-section-container">
-      <div>
-        <h1>home</h1>
-      </div>
-      <div>
-        <PostCreator />
+    <section className="home-section-container">
+      <header>
+        <h1 className="heading-1">Home</h1>
+      </header>
+      <section>
+        <PostCreator />  
+      </section>
+      <section>
         <Posts />
-      </div>
-    </div>
+      </section>
+    </section>
   );
 }
 

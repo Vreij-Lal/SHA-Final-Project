@@ -1,5 +1,14 @@
+@import "Sizes";
+@import "Colors";
+@import "Typography";
+@import "Headings";
+@import "NavBars";
+@import "Images";
+@import "Buttons";
+
 .container {
   display: flex;
   outline: solid 1px green;
   width: 100%;
 }
+

@@ -21,14 +21,14 @@ function Explore() {
   }, []);
 
   return (
-    <div className="explore-section-container">
-      <div>
-        <h1>Explore</h1>
-      </div>
+    <section className="explore-section-container">
+      <header>
+        <h1 className="heading-1">Explore</h1>
+      </header>
       {user.map((element) => {
         return <ExploreUser user={element} />;
       })}
-    </div>
+    </section>
   );
 }
 

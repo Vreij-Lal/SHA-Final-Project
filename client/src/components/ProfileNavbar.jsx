@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "../styles/ProfileNavbar.scss";
 import logo from "../Logo.png";
+
 function ProfileNavbar() {
   let [username, setUsername] = useState("");
   let [news, setNews] = useState([]);
@@ -23,16 +24,16 @@ function ProfileNavbar() {
       .then((data) => setNews([...data.data.results]));
   }, []);
   return (
-    <div className="profile-navbar-container">
-      <div className="user-profile-container">
-        <img src={logo} alt="" className="user-profile-picture" />
-        <div className="username-header">
-          <h1>{username}</h1>
-        </div>
-      </div>
+    <section className="profile-navbar-container">
+      <section className="user-profile-container ">
+        <img src={logo} alt="" className="profile" />
+        <section className="username-header">
+          <h4 className="heading-4">{username}</h4>
+        </section>
+      </section>
 
-      <nav className="navbar-container">
-        <ul>
+      <nav >
+        <ul className="navbar">
           <NavLink className="navbar-link" to="/homepage">
             Home
           </NavLink>
@@ -50,7 +51,7 @@ function ProfileNavbar() {
           </NavLink>
         </ul>
       </nav>
-    </div>
+    </section>
   );
 }
 

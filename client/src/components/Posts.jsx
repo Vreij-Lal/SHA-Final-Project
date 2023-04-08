@@ -17,24 +17,28 @@ function Posts() {
   };
 
   return (
-    <div>
+    <section className="post-wrapper">
       {posts.map((e) => {
         return (
-          <div className="post-container">
-            <div className="poster-info">
+          <section className="post-container">
+
+            <section className="poster-info">
               <img src={logo} alt="" />
               <h4>{e.user}</h4>
-            </div>
-            <div className="post-img">
+            </section>
+
+            <section className="post-img">
               <img src={e.image} />
-            </div>
-            <div className="post-desc">
+            </section>
+
+            <section className="post-desc">
               <p>{e.desc}</p>
-            </div>
-          </div>
+            </section>
+
+          </section>
         );
       })}
-    </div>
+    </section>
   );
 }
 

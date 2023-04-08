@@ -3,7 +3,7 @@ import axios from "axios";
 import { storage } from '../firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { v4 } from 'uuid';
-
+import "../styles/PostsCreator.scss"
 /*
 function PostCreator() {
 
@@ -117,16 +117,23 @@ function PostCreator() {
  }, [uploadedImage])
 
  return (
-   <div>
-     <h1>create a post</h1>
+   <section className="post-creator-container">
+    <heading>
+      <h4 className="heading-4">create a post</h4>
+    </heading>
+     
      <input
        type="text"
        placeholder="What's on your mind"
        onChange={(e) => setDescription(e.target.value)}
      />
+
      <input type="file" onChange={(event) => setUploadedImage(event.target.files[0])}/>
-     <button onClick={createPost}>Post</button>
-   </div>
+
+
+     <button className="button-1" onClick={createPost}>Post</button>
+
+   </section>
  );
 }
 

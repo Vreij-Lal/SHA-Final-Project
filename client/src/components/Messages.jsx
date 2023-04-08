@@ -87,7 +87,7 @@ useEffect(() => {
   return (
 
     <div className="messages-section-container">
-    <h1>Messages</h1>
+    <h1 className="heading-1">Messages</h1>
 
      
       <div>

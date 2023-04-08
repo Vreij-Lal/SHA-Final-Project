@@ -1,0 +1,21 @@
+
+.logo {
+    height: $logo-size;
+    width: $logo-size;
+  }
+  
+.profile {
+    height: $profile-pic-size;
+    width: $profile-pic-size;
+    border-radius: 50%;
+  }
+
+  
+.header-img {
+    height: $header-img-size;
+    width: $header-img-size;
+}
+
+.post {
+    width: $tweet-width;
+  }
