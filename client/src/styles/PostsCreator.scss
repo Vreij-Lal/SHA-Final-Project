@@ -1,5 +1,61 @@
+@import "../styles/Main.scss";
 
 .post-creator-container{
+width: 90%;
+margin: 0 auto;
+display: flex;
+flex-direction: column;
+
+header{
+  h4{
+    border-bottom: #ccc 1px solid;
+    padding-bottom: 0.5rem;
+    
+  }
+}
+
+.file-input {
+    position: relative;
+    width: 100%;
+  
+    input[type='file'] {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+
+    }
+  
+    #thumbnail {
+      width: 15rem;
+      height: 8rem;
+      background-size:contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      margin-bottom: 1rem;
+      width: 100%;
+    }
+  
+    input[type='file']:not(:focus) + #thumbnail {
+      background-image: none;
+    }
+  }
 
 
+  .comment-section {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+    background-color: #f2f2f2;
+    //border: 1px solid #ccc;
+    padding: 10px;
+    width: 100%;
+    height: 6rem;
+    resize: none;
+  }
+
+  button{
+    align-self: center;
+  }
 }
