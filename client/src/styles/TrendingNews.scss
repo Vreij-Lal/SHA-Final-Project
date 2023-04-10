@@ -1,14 +1,23 @@
-.news {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  h1 {
-    font-size: 0.5rem;
-  }
-  .news-container-img {
+
+.trending-news-container{
+  border: 1px solid red;
+  .news {
     width: 100%;
-    img {
-      width: 50%;
+    display: flex;
+    flex-direction: column;
+  
+    h1 {
+      font-size: 0.5rem;
     }
+
+    .news-container-img {
+      width: 100%;
+      img {
+        width: 50%;
+      }
+    }
+
   }
+
 }
+

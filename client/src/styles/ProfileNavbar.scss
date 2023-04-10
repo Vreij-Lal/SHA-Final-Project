@@ -1,14 +1,6 @@
-/*
-@import "Sizes";
-@import "Colors";
-@import "Typography";
-@import "Headings";
-@import "NavBars";
-@import "Images";
-@import "Buttons";*/
 
 .profile-navbar-container {
-  outline: solid 1px red;
+  border: #ccc 1px solid;
   width: 25%;
   display: flex;
   flex-direction: column;
@@ -18,7 +10,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    outline: solid 1px red;
+
+    img{
+      margin-top: 1rem;
+    }
 
 
     .username-header {
