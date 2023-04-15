@@ -86,16 +86,19 @@ useEffect(() => {
 
   return (
 
-    <div className="messages-section-container">
-    <h1 className="heading-1">Messages</h1>
+    <section className="messages-section-container">
+      <header>
+        <h1 className="heading-1">Messages</h1>
+      </header>
+    
 
      
-      <div>
+      <section>
         {userFriends.map((element) => {
 
           return <UserFriends username={element} onData={handleData}/>
         })}
-      </div>
+      </section>
       <h1>chat with {friendName} !</h1>
       <h1>{messageReceived}</h1>
       <input
@@ -106,7 +109,7 @@ useEffect(() => {
       />
       <button onClick={sendMessage}>send msg</button>
      
-    </div>
+    </section>
 
     
   );

@@ -10,9 +10,9 @@ function TrendingNews(props) {
         </header>
     
 
-        <div className="news-container-img">
+        <section className="news-container-img">
           <img src={props.news.image_url} />
-        </div>
+        </section>
 
       </section>
 
