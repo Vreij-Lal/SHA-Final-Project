@@ -16,20 +16,25 @@ function NewsBar() {
   useEffect(() => {
     axios
       .get(
-        "https://newsdata.io/api/1/news?apikey=pub_177364906c8f6693d22ebc8f68445d85f0ef7&language=en"
+        "https://newsapi.org/v2/top-headlines?country=us&apiKey=96073d3cd74642eb887c6a143ef8cb41"
       )
-      .then((data) => setNews([...data.data.results]));
+      .then((data) => setNews([data.data["articles"]]));
   }, []);
+
+
   return (
     <section className="newsbar-container">
       <header>
         <h1 className="heading-1">Trending News</h1>
       </header>
-      {news.map((element) => {
-        return <TrendingNews news={element} />;
+
+      {news.map((value) => {
+        return value.map((value) => {
+          return <TrendingNews news={value}/>
+        })
       })}
+      
     </section>
   );
 }
-
 export default NewsBar;

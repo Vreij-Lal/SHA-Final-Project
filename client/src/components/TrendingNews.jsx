@@ -5,14 +5,11 @@ function TrendingNews(props) {
 
       <section className="news">
 
-        <header>
-          <h1>{props.news.title}</h1>
-        </header>
-    
+        <img src={props.news.urlToImage} alt="" />
 
-        <section className="news-container-img">
-          <img src={props.news.image_url} />
-        </section>
+
+          <h4><a href={props.news.url}>{props.news.title}</a></h4>
+
 
       </section>
 
