@@ -1,10 +1,12 @@
 .explore-user-container {
-  width: 100%;
+  width: 95%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  outline: 1px solid red;
-
+  border: solid 1px #ccc;
+  border-radius: 1rem;
+  padding: 1rem 2rem;
+  margin: 1rem 1rem;
   img {
     width: 20%;
     border-radius: 50%;

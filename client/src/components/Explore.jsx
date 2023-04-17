@@ -18,7 +18,7 @@ function Explore() {
           .get(`http://localhost:8080/user/${data.data._id}`)
           .then((data) => setUser([...data.data]));
       });
-  }, []);
+  }, [user]);
 
   return (
     <section className="explore-section-container">

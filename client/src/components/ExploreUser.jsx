@@ -41,6 +41,7 @@ function ExploreUser(props) {
           send();
           setButtonBool(!buttonBool);
         }}
+        className="button-1"
       >
         {buttonBool ? "Requested" : "Add friend"}
       </button>
