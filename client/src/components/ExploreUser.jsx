@@ -5,14 +5,38 @@ import logo from "../Logo.png";
 function ExploreUser(props) {
   let [buttonBool, setButtonBool] = useState(false);
   let [username, setUsername] = useState("");
+  let [sentFriendRequests, setSentFriendRequests] = useState([]);
 
   useEffect(() => {
     axios
       .post("http://localhost:8080/auth/verify", {
         token: localStorage.getItem("token"),
       })
-      .then((data) => setUsername(data.data.name));
+      .then((data) => {
+        setUsername(data.data.name);
+      })
   }, [username]);
+
+
+  useEffect(() => {
+    axios
+      .post("http://localhost:8080/auth/verify", {
+        token: localStorage.getItem("token"),
+      })
+      .then((data) => {
+        setSentFriendRequests(data.data.sentFriendRequests);
+        
+        for(let i = 0; i < sentFriendRequests.length; i++){
+          if(sentFriendRequests[i] == props.user.name){
+            setButtonBool(true);
+            return;
+          }
+        }
+      })
+  }, [buttonBool]);
+  
+
+
 
   const send = () => {
     if (buttonBool == false) {
@@ -31,11 +55,14 @@ function ExploreUser(props) {
         .then((data) => alert(data));
     }
   };
+
+
   return (
     <div className="explore-user-container">
       <img src={logo} alt="" />
 
       <h1>{props.user.name}</h1>
+
       <button
         onClick={() => {
           send();
@@ -45,6 +72,7 @@ function ExploreUser(props) {
       >
         {buttonBool ? "Requested" : "Add friend"}
       </button>
+      
     </div>
   );
 }

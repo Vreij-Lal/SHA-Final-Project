@@ -64,6 +64,7 @@ const verify = async (req, res) => {
         _id: user.id,
         token: token,
         friendRequests: user.friendRequests,
+        sentFriendRequests:user.sentFriendRequests,
         friends: user.friends,
         rooms: user.rooms,
       };

@@ -32,9 +32,15 @@ const sendFriendRequest = async (req, res) => {
   try {
     const sender = req.body.sender;
     const friendName = req.body.friendName;
+
+    const friendRequestSender = await User.findOne({name: sender});
+    friendRequestSender.sentFriendRequests.push(friendName);
+    friendRequestSender.save();
+
     const user = await User.findOne({ name: friendName });
     user.friendRequests.push(sender);
     user.save();
+
     res.send({ message: "Request sent" });
   } catch (err) {
     res.status(500).json({
@@ -85,15 +91,27 @@ const cancelFriendRequest = async (req, res) => {
   try {
     const sender = req.body.sender;
     const friendName = req.body.friendName;
+
     const user = await User.findOne({ name: friendName });
     if (user) {
-      for (var i = 0; i < user.friendRequests.length; i++) {
+      for (let i = 0; i < user.friendRequests.length; i++) {
         if (user.friendRequests[i] == sender) {
           user.friendRequests.splice(i, 1);
         }
       }
     }
     user.save();
+
+    const friendRequestSender = await User.findOne({name: sender});
+    if(friendRequestSender){
+      for (let i = 0; i < friendRequestSender.sentFriendRequests.length; i++) {
+        if (friendRequestSender.sentFriendRequests[i] == friendName) {
+          friendRequestSender.sentFriendRequests.splice(i, 1);
+        }
+      }
+    }
+    friendRequestSender.save();
+
     res.send({ message: "Request sent" });
   } catch (err) {
     res.status(500).json({

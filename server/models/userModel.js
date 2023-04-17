@@ -17,6 +17,7 @@ const UserSchema = new mongoose.Schema(
       required: [true, "Password is required!"],
     },
     friendRequests: [String],
+    sentFriendRequests: [String],
     friends: [String],
     rooms: [String],
   },

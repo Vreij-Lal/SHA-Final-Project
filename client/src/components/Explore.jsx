@@ -5,7 +5,7 @@ import "../styles/Explore.scss";
 
 function Explore() {
   let [user, setUser] = useState([]);
-  let [username, setUsername] = useState("");
+
 
   useEffect(() => {
     axios
@@ -13,7 +13,6 @@ function Explore() {
         token: localStorage.getItem("token"),
       })
       .then((data) => {
-        setUsername(data.data.name);
         axios
           .get(`http://localhost:8080/user/${data.data._id}`)
           .then((data) => setUser([...data.data]));
