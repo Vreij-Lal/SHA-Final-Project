@@ -13,14 +13,15 @@ function Notification() {
       })
       .then((data) => {
         setUsername(data.data.name);
-        setUserFriendRequests([...data.data.friendRequests]);
-        console.log(userFriendRequests);
+        setUserFriendRequests(data.data.friendRequests);
       });
-  }, [username]);
+  }, [userFriendRequests]);
+
   return (
     <section className="notification-section-container">
       <header>
         <h1 className="heading-1">Notifications</h1>
+        
       </header>
       {userFriendRequests.map((Element) => {
         return <FriendRequests username={Element} />;

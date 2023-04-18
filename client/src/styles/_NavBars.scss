@@ -13,6 +13,7 @@
   }
   .navbar-link {
     display: block;
+    position: relative;
     color: $dark-blue;
     font-family: $heading-font;
     font-weight: $heading-weight;
@@ -26,5 +27,18 @@
       color: $white;
       transition: background-color 0.2s ease-in-out;
     }
+
+    &.with-dot::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: -0.3rem;
+      transform: translate(50%, -50%);
+      width: 0.6rem;
+      height: 0.6rem;
+      background-color: red;
+      border-radius: 50%;
+    }
+
   }
   

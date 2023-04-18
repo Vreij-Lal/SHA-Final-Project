@@ -7,16 +7,6 @@ function ExploreUser(props) {
   let [username, setUsername] = useState("");
   let [sentFriendRequests, setSentFriendRequests] = useState([]);
 
-  useEffect(() => {
-    axios
-      .post("http://localhost:8080/auth/verify", {
-        token: localStorage.getItem("token"),
-      })
-      .then((data) => {
-        setUsername(data.data.name);
-      })
-  }, [username]);
-
 
   useEffect(() => {
     axios
@@ -25,34 +15,35 @@ function ExploreUser(props) {
       })
       .then((data) => {
         setSentFriendRequests(data.data.sentFriendRequests);
-        
+        setUsername(data.data.name);
         for(let i = 0; i < sentFriendRequests.length; i++){
           if(sentFriendRequests[i] == props.user.name){
             setButtonBool(true);
-            return;
           }
         }
+
       })
-  }, [buttonBool]);
+  }, [sentFriendRequests]);
   
 
 
 
-  const send = () => {
+  const send =  () => {
     if (buttonBool == false) {
       axios
         .post("http://localhost:8080/user/sendFriendRequest", {
           sender: username,
           friendName: props.user.name,
-        })
-        .then((data) => alert(data));
-    } else if (buttonBool === true) {
-      axios
+        });
+        return;
+    }
+     else if (buttonBool === true) {
+       axios
         .post("http://localhost:8080/user/cancelFriendRequest", {
           sender: username,
           friendName: props.user.name,
-        })
-        .then((data) => alert(data));
+        });
+        return;
     }
   };
 

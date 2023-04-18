@@ -1,6 +1,7 @@
 import axios from "axios";
-
+import "../styles/FriendRequests.scss";
 import { useState, useEffect } from "react";
+import logo from "../Logo.png";
 
 function FriendRequests(props) {
   let [friendName, setFriendName] = useState("");
@@ -24,10 +25,12 @@ function FriendRequests(props) {
   };
 
   return (
-    <div>
-      {props.username} sent you a friend request
-      <button onClick={handleAccept}>Accept</button>
-    </div>
+    <section className="friend-request-container">
+      <img src={logo} alt="" />
+      <h1>{props.username} sent you a friend request</h1>
+      
+      <button className="button-1" onClick={handleAccept}>Accept</button>
+    </section>
   );
 }
 
