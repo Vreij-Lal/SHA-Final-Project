@@ -91,14 +91,16 @@ useEffect(() => {
         <h1 className="heading-1">Messages</h1>
       </header>
     
-
+      <h4 className="heading-4">Your Friends</h4>
      
-      <section>
+      <section className="friends-slider-container">
+        
         {userFriends.map((element) => {
 
           return <UserFriends username={element} onData={handleData}/>
         })}
       </section>
+      
       <h1>chat with {friendName} !</h1>
       <h1>{messageReceived}</h1>
       <input

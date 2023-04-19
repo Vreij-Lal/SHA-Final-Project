@@ -8,7 +8,7 @@ function ExploreUser(props) {
   let [sentFriendRequests, setSentFriendRequests] = useState([]);
 
 
-  useEffect(() => {
+ useEffect(() => {
     axios
       .post("http://localhost:8080/auth/verify", {
         token: localStorage.getItem("token"),
@@ -23,10 +23,9 @@ function ExploreUser(props) {
         }
 
       })
-  }, [sentFriendRequests]);
+  })
+
   
-
-
 
   const send =  () => {
     if (buttonBool == false) {
