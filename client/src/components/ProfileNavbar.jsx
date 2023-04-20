@@ -61,7 +61,6 @@ function ProfileNavbar() {
           >
             Notifications
           </NavLink>
-          <button onClick={() => console.log(userFriendRequests)}>get</button>
         </ul>
       </nav>
     </section>
