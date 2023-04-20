@@ -22,9 +22,12 @@ const server = app.listen(PORT, () => console.log("listening"));
 const authRoute = require("./routers/authRoute");
 const userRoute = require("./routers/userRoute");
 const postsRoute = require("./routers/postRoute");
+const chatRoute = require("./routers/chatRoute");
 app.use("/auth", authRoute);
 app.use("/user", userRoute);
 app.use("/posts", postsRoute);
+app.use("/chats", chatRoute)
+
 
 const { Server } = require("socket.io");
 

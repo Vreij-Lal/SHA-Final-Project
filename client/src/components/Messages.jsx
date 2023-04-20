@@ -4,6 +4,8 @@ import io from "socket.io-client";
 import UserFriends from "./UserFriends";
 import axios from "axios";
 
+import ChatArea from "./ChatArea";
+
 const socket = io.connect("http://localhost:8080");
 
 function Messages() {
@@ -22,7 +24,6 @@ function Messages() {
 
   const joinRoom = async () => {
     if (room != "") {
-      console.log("rooooom: ", room);
        socket.emit("join_room", room);
 
     }
@@ -96,21 +97,54 @@ useEffect(() => {
       <section className="friends-slider-container">
         
         {userFriends.map((element) => {
-
           return <UserFriends username={element} onData={handleData}/>
         })}
       </section>
       
       <h1>chat with {friendName} !</h1>
-      <h1>{messageReceived}</h1>
-      <input
+
+
+      <section className="chat-container">
+
+        <section className="chat-area">
+        
+        {/* 
+              <div class="chat-bubble">
+                <p class="message">Hey there!</p>
+              </div>
+        */}
+        
+
+              <div class="chat-bubble right">
+                <p class="message">{messageReceived}</p>
+              </div>
+
+
+
+        </section>
+
+        <section className="input-container">
+          <input type="text" className="message-input" placeholder="Type your message..." onChange={(e) => {
+            setMessage(e.target.value);
+          }}/>
+          <button className="send-button" onClick={sendMessage}>Send</button>
+        </section>
+        
+      </section>
+
+     
+
+        {/*
+              <input
         placeholder="Message..."
         onChange={(e) => {
           setMessage(e.target.value);
         }}
       />
-      <button onClick={sendMessage}>send msg</button>
-     
+        */}
+
+
+      {/*<button onClick={sendMessage}>send msg</button> */}
     </section>
 
     

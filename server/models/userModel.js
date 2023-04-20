@@ -20,6 +20,7 @@ const UserSchema = new mongoose.Schema(
     sentFriendRequests: [String],
     friends: [String],
     rooms: [String],
+    chatsHistory:[String],
   },
   { timestamps: true }
 );
