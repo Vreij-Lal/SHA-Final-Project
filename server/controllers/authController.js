@@ -67,6 +67,7 @@ const verify = async (req, res) => {
         sentFriendRequests:user.sentFriendRequests,
         friends: user.friends,
         rooms: user.rooms,
+        chatsHistory:user.chatsHistory,
       };
       res.send(data);
     }

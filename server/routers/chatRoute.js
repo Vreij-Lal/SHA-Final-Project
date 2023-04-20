@@ -8,6 +8,7 @@ const router = express.Router();
 
 //defining routes
 router.post("/create", chatController.createChat);
+router.post("/getchatshistoryarray", chatController.getChatsHistoryArray);
 
 //exporting routes
 module.exports = router;

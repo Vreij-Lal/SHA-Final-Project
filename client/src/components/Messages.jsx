@@ -17,6 +17,7 @@ function Messages() {
   const [message, setMessage] = useState("");
   const [messageReceived, setMessageReceived] = useState("");
 
+  //
   const sendMessage =  () => {
     
      socket.emit("send_message", { message, room });
@@ -60,9 +61,11 @@ function Messages() {
   //getting friend room array
   const [friendRooms, setFriendRooms] = useState('');
   const [friendName, setFriendName] = useState("");
-  const  handleData  = (x, y) => {
+  const [friendChatsHistoryArray, setFriendChatsHistoryArray] = useState('');
+  const  handleData  = (x, y, z) => {
       setFriendRooms((friendRooms) => friendRooms = x);
-     setFriendName(friendName => friendName = y)
+     setFriendName(friendName => friendName = y);
+     setFriendChatsHistoryArray(friendChatsHistoryArray => friendChatsHistoryArray = z)
   }
   
 
@@ -84,6 +87,18 @@ function Messages() {
 useEffect(() => {
   handleFindFirstCommonValue()
 }, [handleData]);
+
+//test
+let [userChatHistory, SetUserChatHistory] = useState([]);
+useEffect(() => {
+  axios
+    .post("http://localhost:8080/auth/verify", {
+      token: localStorage.getItem("token"),
+    })
+    .then((data) => {SetUserChatHistory(data.data.chatsHistory)});
+}, [userChatHistory]);
+
+
 
   return (
 
@@ -114,10 +129,14 @@ useEffect(() => {
               </div>
         */}
         
+        {/*
 
-              <div class="chat-bubble right">
-                <p class="message">{messageReceived}</p>
-              </div>
+          <div class="chat-bubble right">
+            <p class="message">{messageReceived}</p>
+          </div>
+
+        */}
+
 
 
 
@@ -128,6 +147,7 @@ useEffect(() => {
             setMessage(e.target.value);
           }}/>
           <button className="send-button" onClick={sendMessage}>Send</button>
+          <button onClick={() => {console.log(friendChatsHistoryArray);}}>get</button>
         </section>
         
       </section>

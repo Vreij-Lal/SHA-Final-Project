@@ -28,6 +28,20 @@ const createChat = async (req, res) => {
       res.send(err);
     }
 };
+
+const getChatsHistoryArray = async (req, res) => {
+  const {name} = req.body;
+    try {
+      const user = await User.findOne({name:name});
+      const chatsHistoryArray = user.chatsHistory;
+       res.send(chatsHistoryArray);
+    } 
+    catch (err) {
+      res.send(err);
+    }
+};
+
+
 /*
 const sendChat = async (req, res) => {
   const { username, friendName, message} = req.body;
@@ -47,4 +61,5 @@ const sendChat = async (req, res) => {
 */
 module.exports = {
   createChat,
+  getChatsHistoryArray,
 };

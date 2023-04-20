@@ -8,7 +8,7 @@ function UserFriends(props) {
   const [childData, setChildData] = useState('');
 
   const sendDataToParent = async () => {
-    props.onData(childData, props.username);
+    props.onData(childData, props.username, friendChatsHistoryArray);
   }
 
   useEffect( () => {
@@ -20,6 +20,18 @@ function UserFriends(props) {
     .then( (data) => 
       setChildData(data.data.rooms));
   },[])
+
+  const [friendChatsHistoryArray, setFriendChatsHistoryArray] = useState('');
+  useEffect( () => {
+    
+    axios
+  .post("http://localhost:8080/chats/getchatshistoryarray",{
+    name:props.username,
+  })
+  .then( (data) => 
+  setFriendChatsHistoryArray(data.data));
+},[])
+  
 
   return (
     <section className="user-friends-container" onClick={sendDataToParent}>
