@@ -67,7 +67,7 @@ function Messages() {
      setFriendName(friendName => friendName = y);
      setFriendChatsHistoryArray(friendChatsHistoryArray => friendChatsHistoryArray = z)
   }
-  
+
 
     //for setting main socket room state to the common room number friends share
     const handleFindFirstCommonValue = async () => {
@@ -89,15 +89,31 @@ useEffect(() => {
 }, [handleData]);
 
 //test
-let [userChatHistory, SetUserChatHistory] = useState([]);
+let [userChatsHistoryArray, SetUserChatHistory] = useState([]);
 useEffect(() => {
   axios
     .post("http://localhost:8080/auth/verify", {
       token: localStorage.getItem("token"),
     })
     .then((data) => {SetUserChatHistory(data.data.chatsHistory)});
-}, [userChatHistory]);
+}, [userChatsHistoryArray]);
 
+let [commonChatId, setCommonChatId] = useState([]);
+let [chats, setChats] = useState([]);
+useEffect(() => {
+  if(userChatsHistoryArray && friendChatsHistoryArray){
+    for(let i = 0; i < userChatsHistoryArray.length; i++){
+      if(userChatsHistoryArray[i] == friendChatsHistoryArray[i]){
+        setCommonChatId(userChatsHistoryArray[i]);
+        axios.post("http://localhost:8080/chats/getchat", {
+          id:commonChatId,
+        }).then((data) => {
+          setChats(data.data);
+        })
+      }
+    }
+  }
+}, [userChatsHistoryArray, friendChatsHistoryArray, chats]);
 
 
   return (
@@ -147,7 +163,7 @@ useEffect(() => {
             setMessage(e.target.value);
           }}/>
           <button className="send-button" onClick={sendMessage}>Send</button>
-          <button onClick={() => {console.log(friendChatsHistoryArray);}}>get</button>
+          <button onClick={() => {console.log(chats);}}>get</button>
         </section>
         
       </section>

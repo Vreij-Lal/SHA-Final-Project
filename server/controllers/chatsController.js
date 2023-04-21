@@ -41,6 +41,20 @@ const getChatsHistoryArray = async (req, res) => {
     }
 };
 
+const getChat = async (req, res) => {
+  const {id} = req.body;
+    try {
+      const chat = await Chat.findOne({_id:id});
+      const chatAndChatSender = {
+        chat:chat.chats,
+        chatSender:chat.ChatSender,
+      }
+       res.send(chatAndChatSender);
+    } 
+    catch (err) {
+      res.send(err);
+    }
+};
 
 /*
 const sendChat = async (req, res) => {
@@ -62,4 +76,5 @@ const sendChat = async (req, res) => {
 module.exports = {
   createChat,
   getChatsHistoryArray,
+  getChat,
 };
