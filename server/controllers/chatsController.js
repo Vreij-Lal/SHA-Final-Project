@@ -56,25 +56,26 @@ const getChat = async (req, res) => {
     }
 };
 
-/*
 const sendChat = async (req, res) => {
-  const { username, friendName, message} = req.body;
+  const {id, senderName, message} = req.body;
     try {
-      let newChat = new Chat({
-        sender: sender,
-        receiver: receiver,
-        message: message,
-      });
-      await newChat.save();
-      res.send({ message: "user saved !" });
+      const chat = await Chat.findOne({_id:id})
+      if(chat){
+         chat.ChatSender.push(senderName);
+         chat.chats.push(message)
+         await chat.save();
+      }
+     
+      res.send({ message: "success"});
     } 
     catch (err) {
       res.send({ message: "error"});
     }
 };
-*/
+
 module.exports = {
   createChat,
   getChatsHistoryArray,
   getChat,
+  sendChat,
 };
