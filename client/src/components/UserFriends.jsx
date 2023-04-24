@@ -8,22 +8,12 @@ function UserFriends(props) {
   const [childData, setChildData] = useState('');
 
   const sendDataToParent = async () => {
-    props.onData(childData, props.username, friendChatsHistoryArray);
+    props.onData(friendChatsHistoryArray);
   }
 
-  useEffect( () => {
-    
-      axios
-    .post("http://localhost:8080/user/getUserRoom",{
-      username:props.username,
-    })
-    .then( (data) => 
-      setChildData(data.data.rooms));
-  },[])
 
   const [friendChatsHistoryArray, setFriendChatsHistoryArray] = useState('');
   useEffect( () => {
-    
     axios
   .post("http://localhost:8080/chats/getchatshistoryarray",{
     name:props.username,
@@ -35,6 +25,7 @@ function UserFriends(props) {
 
   return (
     <section className="user-friends-container" onClick={sendDataToParent}>
+      <button onClick={() => {console.log(childData,props.username,friendChatsHistoryArray);}}>get</button>
       <img src={logo} alt="" className="profile" />
       <h1>{props.username}</h1>
     </section>

@@ -4,14 +4,12 @@ import io from "socket.io-client";
 import UserFriends from "./UserFriends";
 import axios from "axios";
 
-import ChatArea from "./ChatArea";
+import Chats from "./Chats";
 
 const socket = io.connect("http://localhost:8080");
 
 function Messages() {
 
-  //room states
-  const [room, setRoom] = useState("");
 
   //messages states
   const [message, setMessage] = useState("");
@@ -50,12 +48,9 @@ function Messages() {
 
   
   //getting friend room array
-  const [friendRooms, setFriendRooms] = useState('');
-  const [friendName, setFriendName] = useState("");
+
   const [friendChatsHistoryArray, setFriendChatsHistoryArray] = useState('');
-  const  handleData  = (x, y, z) => {
-      setFriendRooms((friendRooms) => friendRooms = x);
-     setFriendName(friendName => friendName = y);
+  const  handleData  = (z) => {
      setFriendChatsHistoryArray(friendChatsHistoryArray => friendChatsHistoryArray = z)
   }
 
@@ -73,7 +68,7 @@ useEffect(() => {
 
 
 
-let [commonChatId, setCommonChatId] = useState(null);
+let [commonChatId, setCommonChatId] = useState("");
 useEffect(() => {
   if(userChatsHistoryArray && friendChatsHistoryArray){
     for(let i = 0; i < userChatsHistoryArray.length; i++){
@@ -85,7 +80,7 @@ useEffect(() => {
 }, [userChatsHistoryArray, friendChatsHistoryArray]);
 
 
-let [chatsObject, setChatsObject] = useState([]);
+let [chatsObject, setChatsObject] = useState("");
 let [chats, setChats] = useState(chatsObject.chats);
 let [chatSender, setChatSender] = useState(chatsObject.chatSender);
 useEffect(() => {
@@ -93,12 +88,11 @@ useEffect(() => {
     .post("http://localhost:8080/chats/getchat", {
       id:commonChatId,
     })
-    .then((data) => setChatsObject(data.data));
-}, [commonChatId]);
-
-
-
-
+    .then((data) => {
+      setChats(data.data.chats)
+      setChatSender(data.data.chatSender);
+    });
+}, [commonChatId, chats]);
 
   return (
 
@@ -111,31 +105,24 @@ useEffect(() => {
      
       <section className="friends-slider-container">
         
+        
         {userFriends.map((element) => {
           return <UserFriends username={element} onData={handleData}/>
         })}
+        
       </section>
-      
-      <h1>chat with {friendName} !</h1>
-
 
       <section className="chat-container">
 
         <section className="chat-area">
-        
-        {/* 
-              <div class="chat-bubble">
-                <p class="message">Hey there!</p>
-              </div>
-        */}
-        
-        {/*
 
-          <div class="chat-bubble right">
-            <p class="message">{messageReceived}</p>
-          </div>
-
-        */}
+        {chats && chatSender && username ? (
+          chats.map((element, index) =>  {
+          return <Chats chat={element} sender={chatSender[index]} user={username} key={index} />
+          })
+        ) : (
+          <p>none</p>
+        )}
 
         </section>
 
@@ -144,12 +131,9 @@ useEffect(() => {
             setMessage(e.target.value);
           }}/>
           <button className="send-button" onClick={sendMessage}>Send</button>
-          <button onClick={() => {console.log(chats.chatSender);}}>get</button>
         </section>
         
       </section>
-
-     
 
     </section>
 
