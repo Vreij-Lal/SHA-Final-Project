@@ -38,19 +38,16 @@ const io = new Server(server, {
   },
 });
 
-io.on("connection", (socket) => {
-  //sending the recived msg to all users
-  /*console.log("user connected " + socket.id);
-    socket.on("send_message", (data) => {
-    socket.broadcast.emit("receive_message", data);
-    });*/
 
-  //private chat rooms
-  console.log("user connected " + socket.id);
-  socket.on("join_room", (data) => {
-    socket.join(data);
-  });
-  socket.on("send_message", (data) => {
-    socket.to(data.room).emit("receive_message", data);
+const Chat = require("./models/chatsModel");
+io.on("connection", (socket) => {
+
+    socket.on("send_message", async (data) => {
+      const chat = await Chat.findOne({ _id: data.commonChatId });
+      if (chat) {
+        chat.ChatSender.push(data.username);
+        chat.chats.push(data.message);
+        await chat.save();
+      }
   });
 });

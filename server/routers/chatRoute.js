@@ -10,7 +10,7 @@ const router = express.Router();
 router.post("/create", chatController.createChat);
 router.post("/getchatshistoryarray", chatController.getChatsHistoryArray);
 router.post("/getchat", chatController.getChat);
-router.post("/sendchat", chatController.sendChat);
+//router.post("/sendchat", chatController.sendChat);
 
 
 //exporting routes

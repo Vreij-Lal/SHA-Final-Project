@@ -46,7 +46,7 @@ const getChat = async (req, res) => {
     try {
       const chat = await Chat.findOne({_id:id});
       const chatAndChatSender = {
-        chat:chat.chats,
+        chats:chat.chats,
         chatSender:chat.ChatSender,
       }
        res.send(chatAndChatSender);
@@ -56,7 +56,7 @@ const getChat = async (req, res) => {
     }
 };
 
-const sendChat = async (req, res) => {
+/*const sendChat = async (req, res) => {
   const {id, senderName, message} = req.body;
     try {
       const chat = await Chat.findOne({_id:id})
@@ -71,11 +71,10 @@ const sendChat = async (req, res) => {
     catch (err) {
       res.send({ message: "error"});
     }
-};
+};*/
 
 module.exports = {
   createChat,
   getChatsHistoryArray,
   getChat,
-  sendChat,
 };
