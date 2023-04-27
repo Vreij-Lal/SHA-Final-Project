@@ -1,50 +1,46 @@
-.profile-section-container {
-  outline: solid 1px #ccc;
+.profile-container{
   width: 50%;
-  .profile-section-username-header {
-    h1 {
-    }
-  }
-  .profile-section-timeline {
-    width: 100%;
-    img {
-      width: 100%;
-    }
-    .timeline-container {
-      height: 5rem;
+  display: flex;
+  flex-direction: column;
 
-      width: 100%;
-      .timeline {
-        position: relative;
-        bottom: 5rem;
-        width: 20%;
-        img {
-          width: 100%;
-          border-radius: 50%;
-        }
-      }
-    }
-    .profile-info {
-      display: flex;
-      flex-direction: column;
-      .profile-info-section {
-        display: flex;
-        justify-content: space-around;
-      }
+  header{
+    h1{
+      border-bottom: #ccc 1px solid;
+      padding-bottom: 0.5rem;
     }
   }
-}
-.profile-navbar {
-  ul {
-    display: flex;
-    justify-content: space-around;
-    .profile-navlinks {
-      list-style-type: none;
+  .banner-container{
+    width: 100%;
+    background-color: #ccc;
+    background-image: url(https://timelinecovers.pro/facebook-cover/download/business-software-coding-screen-facebook-cover.jpg);
+    background-size: cover;
+    height: 15rem;
+    border: green 1px solid;
+    
+    .profile-picture-container{
+      width: 35%;
+      margin: 8.5rem 1rem;
+      img{
+        width: 80%;
+        border-radius: 50%;
+      }
+    }
+
+  }
+  nav{
+    margin-top: 5rem;
+    ul{
+      display: flex;
+      justify-content: space-around;
+    .profile-navlink{
+      cursor: pointer;
       text-decoration: none;
       color: black;
-    }
-    .active {
-      text-decoration: underline;
+      &:hover{
+        color: red;
+      }
+      }
     }
   }
 }
+
