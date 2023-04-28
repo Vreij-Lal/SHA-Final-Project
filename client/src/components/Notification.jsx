@@ -23,9 +23,16 @@ function Notification() {
         <h1 className="heading-1">Notifications</h1>
         
       </header>
-      {userFriendRequests.map((Element) => {
-        return <FriendRequests username={Element} />;
-      })}
+      {userFriendRequests.length > 0 ? (
+    userFriendRequests.map((Element) => {
+      return <FriendRequests username={Element} />;
+    })
+  ) : (
+    <section className="no-notifications">
+      <p className="p">No notifications at the moment</p>
+    </section>
+  )}
+
     </section>
   );
 }
