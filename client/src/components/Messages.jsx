@@ -22,7 +22,6 @@ function Messages() {
     else{
       alert("select user")
     }
-     
   };
 
 
@@ -121,7 +120,7 @@ useEffect(() => {
           return <Chats chat={element} sender={chatSender[index]} user={username} key={index} />
           })
         ) : (
-          <p>none</p>
+          <></>
         )}
 
         </section>

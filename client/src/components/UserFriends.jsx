@@ -25,7 +25,6 @@ function UserFriends(props) {
 
   return (
     <section className="user-friends-container" onClick={sendDataToParent}>
-      <button onClick={() => {console.log(childData,props.username,friendChatsHistoryArray);}}>get</button>
       <img src={logo} alt="" className="profile" />
       <h1>{props.username}</h1>
     </section>
