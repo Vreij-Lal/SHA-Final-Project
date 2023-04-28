@@ -1,5 +1,4 @@
 import "../styles/Profile.scss";
-import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -14,6 +13,29 @@ function Profile() {
       .then((data) => setUsername(data.data.name));
   }, [username]);
 
+  let [userFriends, setUserFriends] = useState("");
+  useEffect(() => {
+    axios
+      .post("http://localhost:8080/auth/verify", {
+        token: localStorage.getItem("token"),
+      })
+      .then((data) => setUserFriends(data.data.friends));
+  }, [userFriends]);
+
+
+
+
+  const [activeSection, setActiveSection] = useState('about');
+
+  const handleSectionClick = (section) => {
+    setActiveSection(section);
+  };
+
+
+  const [activeItem, setActiveItem] = useState(1);
+  const handleClick = (item) => {
+    setActiveItem(item);
+  };
 
   return (
     <section className="profile-container">
@@ -33,16 +55,34 @@ function Profile() {
 
         <nav>
           <ul>
-          <NavLink to="/" className="profile-navlink">About</NavLink>
-          <NavLink to="/" className="profile-navlink">Posts</NavLink>
-          <NavLink to="/" className="profile-navlink">Friends</NavLink>
-          </ul>
+          <li className={activeItem === 1 ? 'active' : ''} onClick={() => {handleSectionClick('about'); handleClick(1)}}>About</li>
+          <li className={activeItem === 2 ? 'active' : ''} onClick={() => {handleSectionClick('posts'); handleClick(2)}}>Posts</li>
+          <li className={activeItem === 3 ? 'active' : ''} onClick={() => {handleSectionClick('friends'); handleClick(3)}}>Friends</li>
+          </ul>    
         </nav>
 
+        {activeSection === 'about' && (
+        <section className="profile-about">
+          <h3 className="heading-3">{username}</h3>
+          <p>Content for about.</p>
+        </section>
+      )}
+
+      {activeSection === 'posts' && (
+        <section className="profile-posts">
+          <h3 className="heading-3">Posts</h3>
+          <p>Content for posts.</p>
+        </section>
+      )}
+
+      {activeSection === 'friends' && (
+        <section className="profile-friends">
+          <h3 className="heading-3">Friends</h3>
+          <p>Content for friends.</p>
+        </section>
+      )}
     </section>
     
-
-
   );
 }
 

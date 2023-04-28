@@ -32,15 +32,38 @@
     ul{
       display: flex;
       justify-content: space-around;
-    .profile-navlink{
+    li{
       cursor: pointer;
       text-decoration: none;
+      list-style-type: none;
       color: black;
+
       &:hover{
-        color: red;
+        color: #ccc;
       }
       }
     }
   }
+  .active{
+    color: red;
+  }
+  .profile-about{
+    width: 100%;
+    border: solid 1px yellow;
+    margin-top: 1rem;
+  }
+  .profile-posts{
+    width: 100%;
+    border: solid 1px yellow;
+    margin-top: 1rem;
+  }
+
+  .profile-friends{
+    width: 100%;
+    border: solid 1px yellow;
+    margin-top: 1rem;
+  }
 }
+
+
 
