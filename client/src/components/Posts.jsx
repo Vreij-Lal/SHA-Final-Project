@@ -7,12 +7,11 @@ function Posts() {
 
   useEffect(() => {
     getPosts();
-  }, []);
+  }, [posts]);
 
   const getPosts = () => {
     axios.get("http://localhost:8080/posts/getposts").then((d) => {
       setPosts(d.data);
-      console.log(posts);
     });
   };
 
