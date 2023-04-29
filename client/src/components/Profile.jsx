@@ -1,7 +1,9 @@
 import "../styles/Profile.scss";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import ProfilePosts from "./ProfilePosts";
+import ProfileAbout from "./ProfileAbout";
+import ProfileFriends from "./ProfileFriends";
 
 function Profile() {
   let [username, setUsername] = useState("");
@@ -62,24 +64,15 @@ function Profile() {
         </nav>
 
         {activeSection === 'about' && (
-        <section className="profile-about">
-          <h3 className="heading-3">{username}</h3>
-          <p>Content for about.</p>
-        </section>
+          <ProfileAbout/>
       )}
 
       {activeSection === 'posts' && (
-        <section className="profile-posts">
-          <h3 className="heading-3">Posts</h3>
-          <p>Content for posts.</p>
-        </section>
+        <ProfilePosts/>
       )}
 
       {activeSection === 'friends' && (
-        <section className="profile-friends">
-          <h3 className="heading-3">Friends</h3>
-          <p>Content for friends.</p>
-        </section>
+        <ProfileFriends/>
       )}
     </section>
     
