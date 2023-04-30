@@ -1,5 +1,6 @@
-.profile-friends{
+.profile-friends-container{
     width: 100%;
-    border: solid 1px yellow;
-    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
