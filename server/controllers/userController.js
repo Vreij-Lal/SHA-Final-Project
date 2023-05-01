@@ -142,6 +142,28 @@ const getUserRoom = async (req, res) => {
 };
 
 
+const unfriendUser = async (req, res) => {
+  try {
+    const username = req.body.username;
+    const friendName = req.body.friendName;
+    const user = await User.findOne({ name: username });
+    if(user){
+      for(let i = 0; i < user.friends; i++){
+        if(user.friends[i] == friendName){
+          user.friends.splice(i, 1);
+          return;
+        }
+      }
+    }
+
+  } catch (err) {
+    res.status(500).json({
+      status: "Failed",
+      message: err,
+    });
+  }
+};
+
 //exporting the following functions
 module.exports = {
   getAllUsers,
@@ -149,4 +171,5 @@ module.exports = {
   cancelFriendRequest,
   acceptFriendRequest,
   getUserRoom,
+  unfriendUser,
 };

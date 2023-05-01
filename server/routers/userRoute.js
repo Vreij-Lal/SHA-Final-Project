@@ -13,5 +13,6 @@ router.post("/sendFriendRequest", userController.sendFriendRequest);
 router.post("/cancelFriendRequest", userController.cancelFriendRequest);
 router.post("/acceptFriendRequest", userController.acceptFriendRequest);
 router.post("/getUserRoom",userController.getUserRoom);
+router.post("/unfriend",userController.unfriendUser);
 //exporting routes
 module.exports = router;
