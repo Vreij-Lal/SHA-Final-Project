@@ -148,12 +148,12 @@ const unfriendUser = async (req, res) => {
     const friendName = req.body.friendName;
     const user = await User.findOne({ name: username });
     if(user){
-      for(let i = 0; i < user.friends; i++){
+      for(let i = 0; i < user.friends.length; i++){
         if(user.friends[i] == friendName){
           user.friends.splice(i, 1);
-          return;
         }
       }
+      user.save();
     }
 
   } catch (err) {
